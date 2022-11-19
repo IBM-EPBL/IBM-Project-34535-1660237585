@@ -1,0 +1,81 @@
+/* .content{
+    border: 1px solid grey;
+    color: black;
+    width: 140%;
+    background-color: white;
+} */
+/* .about-img{
+    width: 70%;
+    height: 130%;
+} */
+.aboutus-icon{
+    position: absolute;
+    height: 80px;
+    width:280px;
+    opacity: 0;
+    top: 40px;
+    left: 40px;
+}
+.about-content h4{
+    font-size: 35px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: black;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.about-content h3{
+    font-weight: 550;
+    font-size: 23px;
+    padding-top: 60px;
+    color: #f7ca18;
+}
+.about-content{
+	position: relative;
+	/* background-color: white; */
+	width: 50%;
+	/* margin-top: 200px; */
+    top: 150px;
+	/* margin-left: 100px; */
+    left: 100px;
+	padding: 0 30px 90px 50px;
+    height: 70%;
+}
+.about-content .women-image{
+	position: absolute;
+    width: 410px;
+    height: 410px;
+    left: 670px;
+    top: 50px;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 70%;   
+    position: relative;
+    left: 30px;
+    /*background-color: #000000;*/
+  }
+  td, th{
+      background-color:  transparent;
+      border: 2px solid lightgray;
+      text-align: center;
+      padding: 10px 10px 10px 10px;
+      color: white;
+      font-size: 17px;
+  }
+  th{
+      background-color: #747474;
+      color: white;
+      text-transform: uppercase;
+  }
+  .pastdata{
+        background: linear-gradient(rgba(0, 0, 3, 0.9), rgba(1, 1, 0, 0.6)), url("../images/predictor.jpg");
+        background-repeat: no-repeat;
+        /* background-size: cover; */
+        overflow: auto; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+  }

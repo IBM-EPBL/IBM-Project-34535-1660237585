@@ -1,0 +1,85 @@
+<html>
+  <head>
+    <title>
+      LifeCare
+    </title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css')}}">
+    <style>
+      body {
+        background: linear-gradient(rgba(0, 0, 2, 0.7), rgba(1, 0, 0, 0)), url("../static/images/internet-heartbeat.gif");
+        background-repeat: no-repeat;
+        background-size: 100% 110%;
+        overflow: hidden;
+        /* height: 100vh; */
+      }
+      .bgcolor {
+        background-color:#46866C;
+        transition: all ease-in-out 300ms;
+        width: 100%;
+      }
+      section img {
+        position: absolute;
+        top: 0px;
+
+      }
+    </style>
+    <script>
+      function changeBg()
+      {
+        let navbar= document.getElementById("navbar");
+        let scrollbar= window.scrollY;
+        if (scrollbar < 80) {
+          navbar.classList.remove("bgcolor");
+        }
+        else {
+          navbar.classList.add("bgcolor")
+        }
+      }
+      window.addEventListener('scroll', changeBg);
+    </script>
+</head>
+<body style="overflow: auto">
+    <div>
+        <nav id="navbar" style="font-family: 'Open Sans', sans-serif">
+            <ul>
+                <center>
+                    <a href="/" style="text-decoration: none;color: white;"><li>Home</li></a>
+                    <a href="/about" style="text-decoration: none;color: white;"><li>About</li></a>
+                    <a href="/original" style="text-decoration: none;color: white;"><li>Predict</li></a>
+                    {% if session["loggedin"] == True%}
+                      <a href="/logout" style="text-decoration: none;color: white;"><li>Logout</li></a>
+                    {% else %}
+                      <a href="/register" style="text-decoration: none;color: white;"><li>Login</li></a>
+                    {% endif %}
+                    <li class="slide"></li>
+                </center>
+            </ul>
+        </nav>
+    </div>
+    <!-- <div style = "display: flex;padding-top: 200px;width: 100%;">
+        <div class = "content">
+            <h1 style="font-size: 40px;color: #f7ca18;">
+                ABOUT US
+            </h1>
+            Among various life-threatening diseases, heart disease has garnered a great deal of attention in medical research. The diagnosis of heart disease is a challenging task, which can offer automated predictions about the heart condition of a patient so that further treatment can be made effective. Cardiovascular diseases have become a cause of concern in increasing the mortality rate. So in order to prevent these diseases we need a solid prediction system in place to effectively diagnose these diseases at a pretty faster rate and save many human lives. So in order to make a clear vision for patients who are really confused about their symptoms, our application would be useful for them to predict whether they are being diagnosed by the cardiovascular disease.
+        </div>
+        <div>
+            <img class = "about-img" src = "{{ url_for('static', filename='images/about.jpg')}}">
+        </div>
+    </div> -->
+    <div class="about-content">
+        <div style="width:600px;height: 64%;">
+            <img class = "aboutus-icon" src="{{ url_for('static', filename='images/aboutustopic.png')}}">
+            <h3>WHO WE ARE ?</h3>
+            <h4 style="color: white">
+            We are helping the health sector
+            </h4>
+            <p style="color: lightgray;line-height: 22px;font-size:16px">
+                Among various life-threatening diseases, heart disease has garnered a great deal of attention in medical research. The diagnosis of heart disease is a challenging task, which can offer automated predictions about the heart condition of a patient so that further treatment can be made effective. Cardiovascular diseases have become a cause of concern in increasing the mortality rate. So in order to prevent these diseases we need a solid prediction system in place to effectively diagnose these diseases at a pretty faster rate and save many human lives. So in order to make a clear vision for patients who are really confused about their symptoms, our application would be useful for them to predict whether they are being diagnosed by the cardiovascular disease.
+            </p>	
+        </div>
+        <img class = "women-image" src="{{ url_for('static', filename='images/about.jpg')}}">
+    </div>
+</body>
+</html>
