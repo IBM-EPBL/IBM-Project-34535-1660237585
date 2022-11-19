@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css')}}">
+</head>
+<body class = "pastdata">
+    <div>
+        <nav id="navbar" style="font-family: 'Open Sans', sans-serif; background: transparent;">
+        <ul>
+            <center>
+                <a href="/" style="text-decoration: none;color: white;"><li>Home</li></a>
+                <a href="/about" style="text-decoration: none;color: white;"><li>About</li></a>
+                <a href="/original" style="text-decoration: none;color: white;"><li>Predict</li></a>
+                {% if session["loggedin"] == True%}
+                <a href="/logout" style="text-decoration: none;color: white;"><li>Logout</li></a>
+                {% else %}
+                <a href="/register" style="text-decoration: none;color: white;"><li>Login</li></a>
+                {% endif %}
+                <li class="slide"></li>
+            </center>   
+        </ul>
+        </nav>
+    </div>
+    <div class="table-content">
+        <table>
+                <tr>
+                    <th>
+                        AGE	
+                    </th>
+                    <th>
+                        GENDER	
+                    </th>
+                    <th>
+                        CHEST PAIN TYPE
+                    </th>
+                    <th>
+                        RESTING BP
+                    </th>
+                    <th>
+                        SERUM CHOLESTROL
+                    </th>
+                    <th>
+                        FASTING BLOOD SUGAR
+                    </th>
+                    <th>
+                        REST ECG
+                    </th>
+                    <th>
+                        MAX HEART RATE
+                    </th>
+                    <th>
+                        INDUCED AGINA
+                    </th>
+                    <th>
+                        OLD PEAK
+                    </th>
+                    <th>
+                        PEAK ST
+                    </th>
+                    <th>
+                        NO OF MAJOR VESSELS
+                    </th>
+                    <th>
+                        RESULT
+                    </th>
+                </tr>
+                {% for data in result %}
+                <tr>
+                    {% if data["gender"] == 1 %}
+                        <td>Male</td>
+                    {% else %}
+                        <td>Female</td>
+                    {% endif %}
+
+                    {% if data["chest_pain"] == 0 %}
+                        <td>Typical Angina</td>
+                    {% elif data["chest_pain"] == 1 %}
+                        <td>Atypical Angina</td>
+                    {% elif data["chest_pain"] == 2 %}
+                        <td>non anginal pain</td>
+                    {% else %}
+                        <td>Asymptomatic</td>
+                    {% endif %}
+
+                    <td>{{data["rest_bp"]}}</td>
+
+                    <td>{{data["serum_cholestrol"]}}</td>
+                    
+                    {% if data["blood_sugar"] == 1 %}
+                        <td>Yes</td>
+                    {% else %}
+                        <td>No</td>
+                    {% endif %}
+
+                    {% if data["rest_ecg"] == 0 %}
+                    <td>Normal</td>
+                    {% elif data["rest_ecg"] == 1 %}
+                        <td>Abnormal</td>
+                    {% else %}
+                        <td>Probable</td>
+                    {% endif %}
+
+                    <td>{{data["max_heart_rate"]}}</td> 
+                    
+                    {% if data["angina"] == 1 %}
+                        <td>Yes</td>
+                    {% else %}
+                        <td>No</td>
+                    {% endif %}
+
+                    <td>{{data["old_peak"]}}</td>
+
+                    {% if data["slope"] == 0 %}
+                    <td>Unsloping</td>
+                    {% elif data["slope"] == 1 %}
+                        <td>Flat</td>
+                    {% else %}
+                        <td>Downsloping</td>
+                    {% endif %}
+
+                    <td>{{data["major_vessels"]}}</td>
+                    
+                    {% if data["thal_type"] == 0 %}
+                    <td>Normal</td>
+                    {% elif data["thal_type"] == 1 %}
+                        <td>Fixed</td>
+                    {% elif data["thal_type"] == 2 %}
+                        <td>Defect</td>
+                    {% elif data["thal_type"] == 3 %}
+                        <td>Reversable</td>
+                    {% endif %}
+
+                    <td>{{data["result"]}}</td>
+                </tr>
+                {% endfor %}
+                <!-- <tr>
+                    <td>21</td>
+                    <td>21</td>
+                    <td>aca</td>
+                    <td>asc</td> 
+                    <td>asca</td>
+                    <td>asca</td>
+                    <td>ascas</td>
+                    <td>asca</td>
+                    <td>ascac</td>
+                    <td>asca</td> 
+                    <td>acsa</td>
+                    <td>casc</td>
+                </tr> -->
+        </table>
+    </div>
+</body>
+</html>

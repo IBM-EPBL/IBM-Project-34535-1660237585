@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lifecare|Register</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/register.css')}}">
+</head>
+<body>
+    <div>
+        <nav id="navbar" style="font-family: 'Open Sans', sans-serif">
+            <ul>
+                <center>
+                    <a href="/" style="text-decoration: none;color: white;"><li>Home</li></a>
+                    <a href="/about" style="text-decoration: none;color: white;"><li>About</li></a>
+                    <a href="/original" style="text-decoration: none;color: white;"><li>Predict</li></a>
+                    {% if "loggedin" in session %}
+                    <a href="/logout" style="text-decoration: none;color: white;"><li>Logout</li></a>
+                    {% else %}
+                    <a href="/register" style="text-decoration: none;color: white;"><li>Login</li></a>
+                    {% endif %}
+                    <li class="slide"></li>
+                </center>
+            </ul>
+        </nav>
+    </div>
+    <div class = "wrapper">
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="/register" id = "registerForm" method="post">
+                <h1>Create Account</h1>
+                <input type="text" name = "name" placeholder="Name" required/>
+                <input type="email" name = "email" placeholder="Email" required/>
+                <input type="password" id = "password" name = "password" placeholder="Password" required/>
+                <input type="password" id = "confirm_password" placeholder="Confirm Password" required/>
+                <p style="position: absolute; top: 300px"><span hidden id = "error"  style="color: red">password and confirm password doesn't match!<span><br><br><p>
+                <button type = "submit" onclick="validation()">Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="/login" method="post">
+                <h1>Log in</h1>
+                <input type="email" name = "email" placeholder="Email" required/>
+                <input type="password" name = "password" placeholder="Password" required/>
+                <a href="#">Forgot your password?</a>
+                {% if loginError == True %}
+                    <h1 style="position: absolute; top: 350px;"><span style="color: red">Invalid Credentials !!<span></h1>
+                {% endif %}
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, User!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
+
+        signUpButton.addEventListener('click', () => {
+            container.classList.add("right-panel-active");
+        });
+
+        signInButton.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+        });
+        let form = document.querySelector("#registerForm");
+        let validation = () => {
+            console.log("hii");
+            let password = document.getElementById("password");
+            let confirm_password = document.getElementById("confirm_password");
+            if(password.value != confirm_password.value) {
+                document.querySelector("#error").removeAttribute("hidden");
+                console.log("bee");
+                event.preventDefault();
+            } 
+            else{
+                document.querySelector("#error").setAttribute("hidden", "hidden");
+            }
+        }
+    </script>
+</body>
+</html>
